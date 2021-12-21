@@ -2,7 +2,7 @@
 ![licence](https://img.shields.io/github/license/ygz213/EasyOpen?style=flat-square)
 # EasyOpenX
 
-This is an app which opens a collection of windows programs simultaneously.
+This is a fork of EasyOpen which opens a collection of programs simultaneously.
 
 ## Requirement
 
@@ -15,7 +15,7 @@ This is an app which opens a collection of windows programs simultaneously.
 
 or *-windows only-*
 
-1. Download binary from [Actions](https://github.com/ygz213/EasyOpen/actions/new) page.
+1. Download binary from [Actions](https://github.com/ygz213/EasyOpen/actions) page.
 2. Run `main.exe` (may be buggy!)
 
 ---

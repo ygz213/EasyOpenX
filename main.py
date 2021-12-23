@@ -15,10 +15,10 @@ class handler:
         self.frame = tk.Frame(self.canvas, bg='white')
         self.frame.place(x=0,y=80,relheight=0.8,relwidth=1)
         
-        self.addAppButton = tk.Button(master, text='Add an app!', command= self.addApp)
+        self.addAppButton = tk.Button(self.frame, text='Add an app!', command= self.addApp)
         self.addAppButton.pack(pady=5)
         
-        self.openAppsButton = tk.Button(master, text='Open apps', command = self.openApps)
+        self.openAppsButton = tk.Button(self.frame, text='Open apps', command = self.openApps)
         self.openAppsButton.pack(pady=5)
            
     def addApp(self):

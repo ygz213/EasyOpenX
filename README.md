@@ -11,7 +11,7 @@ This is a fork of EasyOpen which opens a collection of programs simultaneously.
 ## Installation
 
 1. Download source code or binary (for windows only, generated with PyInstaller) from [Releases](https://github.com/ygz213/EasyOpen/releases) page.
-2. Run `main.py`
+2. Run `main.py` or `fork.exe`
 
 ---
 

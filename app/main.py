@@ -10,7 +10,7 @@ class handler():
         self.apps = []
 
     def addApp(self):
-        filename = filedialog.askopenfilename(initialdir='/', title='Select File', filetypes=(('all files', '*.*'),('executables', '*.exe')))
+        filename = filedialog.askopenfilename(initialdir=f'{os.getcwd()}', title='Select File', filetypes=(('all files', '*.*'),('executables', '*.exe')))
 
         self.apps.append(filename)        
         self.addToCanvas(filename)

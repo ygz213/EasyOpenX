@@ -22,11 +22,11 @@ class handler():
 
     def openApps(self):
         for path in self.apps:
-            if system == 'Windows':
+            if system() == 'Windows':
                 os.startfile(path)
-            if system == 'Darwin':
+            if system() == 'Darwin':
                 call(('open', path))
-            else:
+            if system() == 'Linux':
                 call(('xdg-open', path))
 handler_call = handler(root)
 

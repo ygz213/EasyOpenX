@@ -1,5 +1,7 @@
 import os 
 import tkinter as tk
+from platform import system
+from subprocess import call
 from tkinter import filedialog
 
 root = tk.Tk()
@@ -20,7 +22,12 @@ class handler():
 
     def openApps(self):
         for path in self.apps:
-            os.startfile(path)
+            if system == 'Windows':
+                os.startfile(path)
+            if system == 'Darwin':
+                call(('open', path))
+            else:
+                call(('xdg-open', path))
 handler_call = handler(root)
 
 

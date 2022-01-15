@@ -1,4 +1,5 @@
 import tkinter as tk
+import collection_handler as ch
 
 root = tk.Tk()
 root.title('EasyOpenX')
@@ -15,7 +16,8 @@ add_collection_button = tk.Button(frame,
                                   activebackground = '#416873',
                                   activeforeground = '#FFF',
                                   relief = 'flat',
-                                  text = 'Create collection')
+                                  text = 'Create collection',
+                                  command = lambda: ch.add_collection())
 add_collection_button.pack(pady=5)
 
 delete_collection_button = tk.Button(frame, 

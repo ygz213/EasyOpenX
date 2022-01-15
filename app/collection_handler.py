@@ -4,6 +4,20 @@ from subprocess import call
 from platform import system
 import os
 
+def add_collection():
+    window = tk.Toplevel()
+    tk.Label(window, text = 'Collection name:', font = 'Tahoma 10 bold').pack()
+    collection_name = tk.Entry(window,
+                               justify = 'center',
+                               width = 35,
+                               bd = 4,
+                               highlightthickness = 2,
+                               highlightcolor = '#FFF',
+                               selectforeground = 'black',
+                               relief = 'flat')    #TODO: command = database.stuff()
+    collection_name.pack()
+
+
 class handler():
     def __init__(self, master):
         self.apps = []

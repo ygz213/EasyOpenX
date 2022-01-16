@@ -6,6 +6,11 @@ import os
 
 def add_collection():
     window = tk.Toplevel()
+    try:
+        window.wm_iconbitmap('icons/icon.ico')
+    except:
+        window.wm_iconbitmap('@icons/icon.xbm')
+
     tk.Label(window, text = 'Collection name:', font = 'Tahoma 10 bold').pack()
     collection_name = tk.Entry(window,
                                justify = 'center',

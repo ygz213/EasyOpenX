@@ -3,6 +3,10 @@ import collection_handler as ch
 
 root = tk.Tk()
 root.title('EasyOpenX')
+try:
+    root.wm_iconbitmap('icons/icon.ico')
+except:
+    root.wm_iconbitmap('@icons/icon.xbm')
 
 canvas = tk.Canvas(root, height=700, width=700, bg='white')
 canvas.create_text(100, 50, text='   Current Collections:', fill='black', font=('Tahoma 15 bold'))

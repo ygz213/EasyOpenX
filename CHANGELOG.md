@@ -1,3 +1,10 @@
+## BETA - EOX v1.5
+
+- Added icon
+- Made UI look better
+- Deleted app-based UI since this is a collection-opening app
+- Seperated handler class
+
 # EOX v1.1
 
 - Fixed [unability to open app on Linux](https://github.com/ygz213/EasyOpenX/issues/3) or MacOS

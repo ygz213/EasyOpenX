@@ -24,7 +24,7 @@ add_collection_button = tk.Button(frame,
                                   command = lambda: ch.add_collection_gui())
 add_collection_button.pack(pady=5)
 
-delete_collection_button = tk.Button(frame, 
+delete_collection_button = tk.Button(frame,
                                      bg = '#D62B47',
                                      fg = '#FFF',
                                      activebackground = '#96323C',

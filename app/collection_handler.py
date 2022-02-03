@@ -25,6 +25,9 @@ def add_collection_gui():
                                relief = 'flat')
     
     def send_collection():
+        if len(collection_name.get()) == 0 or len(collection_apps.get()) == 0:
+            tk.messagebox.showerror('ERROR', 'Invalid data.')
+            return
         collection_repo.clear()
         collection_repo.extend([collection_name.get(), collection_apps.get()])
         dbh.dbhandler.create_collection()

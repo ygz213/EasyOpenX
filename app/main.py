@@ -21,7 +21,7 @@ add_collection_button = tk.Button(frame,
                                   activeforeground = '#FFF',
                                   relief = 'flat',
                                   text = 'Create collection',
-                                  command = lambda: ch.add_collection())
+                                  command = lambda: ch.add_collection_gui())
 add_collection_button.pack(pady=5)
 
 delete_collection_button = tk.Button(frame, 

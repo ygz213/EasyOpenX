@@ -11,7 +11,7 @@ This is a fork of EasyOpen which opens a collection of programs simultaneously.
 
 ## Requirement
 
-- Only requirement is Python 3 and above
+- Only requirement is Python 3.6 and above
 
 ## Installation
 

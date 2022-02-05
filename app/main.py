@@ -20,7 +20,7 @@ def print_collections():
     if dbh.dbhandler.check_collections() is not None:
         collectionnames_as_string = [' '.join(l) for l in dbh.dbhandler.check_collections()]
         collection_data.set(' '.join(str(x) for x in collectionnames_as_string).replace(' ', ' | '))
-        collections.after(1000,  print_collections)  
+        collections.after(1000,  print_collections)
 ########
 
 collection_data = tk.StringVar()

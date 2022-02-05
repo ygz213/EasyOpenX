@@ -20,7 +20,7 @@ def add_collection_gui():
                                highlightcolor = '#FFF',
                                selectforeground = 'black',
                                relief = 'flat')
-
+########
     def send_collection():
         if len(collection_name.get()) == 0 or len(collection_apps.get()) == 0:
             messagebox.showerror('ERROR', 'Invalid data.')
@@ -30,7 +30,7 @@ def add_collection_gui():
         dbh.dbhandler.create_collection()
         window.destroy()
     collection_name.pack()
-
+########
     tk.Label(window, text = 'Collection apps:', font = 'Tahoma 10 bold').pack()
     collection_apps = tk.Entry(window,
                                justify = 'center',

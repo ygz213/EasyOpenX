@@ -1,5 +1,6 @@
 import tkinter as tk
 import collection_handler as ch
+import database_handler as dbh
 
 root = tk.Tk()
 root.title('EasyOpenX')
@@ -13,6 +14,19 @@ canvas.create_text(100, 50, text='   Current Collections:', fill='black', font=(
 canvas.pack()
 frame = tk.Frame(canvas, bg='white')
 frame.place(x=0,y=80,relheight=0.8,relwidth=1)
+
+########
+def print_collections():
+    if dbh.dbhandler.check_collections() is not None:
+        collectionnames_as_string = [' '.join(l) for l in dbh.dbhandler.check_collections()]
+        collection_data.set(' '.join(str(x) for x in collectionnames_as_string).replace(' ', ' | '))
+        collections.after(1000,  print_collections)  
+########
+
+collection_data = tk.StringVar()
+collections = tk.Label(frame, bg = '#FFF', textvariable = collection_data)
+collections.pack()
+print_collections()
 
 add_collection_button = tk.Button(frame,
                                   bg = '#598D9C',

@@ -11,6 +11,9 @@ class edit_db():
         self.cursor.execute(f'''INSERT INTO database VALUES ('{collection_handler.collection_repo[0]}', '{collection_handler.collection_repo[1]}')''')
         self.database.commit()
 
+    def check_collections(self):
+        check = self.cursor.execute('SELECT Collection FROM database').fetchall()
+        return check
 
 
 dbhandler = edit_db()

@@ -34,10 +34,21 @@ def add_collection_gui():
         window.destroy()
     collection_name.pack()
 ########
-    tk.Label(window, text = 'Collection apps:', font = 'Tahoma 10 bold').pack()
+    info_frame = tk.Frame(window)
+    info_frame.pack()
+
+    tk.Label(info_frame, text = 'Collection apps:', font = 'Tahoma 10 bold').grid(column = 0, row = 0)
+    info_icon = tk.PhotoImage(file = r'icons/info.png')
+    info_button = tk.Button(info_frame, relief = 'flat', image = info_icon, command = lambda: messagebox.showinfo('EasyOpenX', '''FORMAT:
+
+C:/EasyOpenX/app/main.py | C:/pdfs/linux.pdf | C:/secret.txt'''))
+    info_button.image = info_icon
+    info_button.grid(column = 1, row = 0)
+
+
     collection_apps = tk.Entry(window,
                                justify = 'center',
-                               width = 35,
+                               width = 70,
                                bd = 4,
                                highlightthickness = 2,
                                highlightcolor = '#FFF',

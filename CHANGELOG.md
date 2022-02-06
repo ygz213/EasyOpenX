@@ -1,3 +1,9 @@
+# EOX v2.0
+
+- Added ability to create collections
+- Added ability to show existing collections
+- Added ability to run collections
+- 
 ## BETA - EOX v1.5
 
 - Added icon

@@ -48,7 +48,11 @@ def add_collection_gui():
 
 
 def run_collection(collection_name):
-    app_paths = ''.join(dbh.dbhandler.search_collection(collection_name)[0][1:])
+    try:
+        app_paths = ''.join(dbh.dbhandler.search_collection(collection_name)[0][1:])
+    except IndexError:
+        messagebox.showerror('ERROR', 'No collection found.')
+
     for app in app_paths.split(' | '):
         if system() == 'Windows':
             startfile(app)

@@ -12,8 +12,10 @@ class edit_db():
         self.database.commit()
 
     def check_collections(self):
-        check = self.cursor.execute('SELECT Collection FROM database').fetchall()
-        return check
+        return self.cursor.execute('''SELECT Collection FROM database''').fetchall()
+
+    def search_collection(self, collection_name):
+        return self.cursor.execute(f'''SELECT * FROM database WHERE Collection = '{collection_name}' ''').fetchall()
 
 
 dbhandler = edit_db()

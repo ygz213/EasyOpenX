@@ -1,5 +1,8 @@
 import tkinter as tk
 from tkinter import messagebox
+from os import startfile
+from platform import system
+from subprocess import call
 import database_handler as dbh
 
 collection_repo = []
@@ -44,6 +47,17 @@ def add_collection_gui():
     collection_apps.pack()
 
 
+def run_collection(collection_name):
+    app_paths = ''.join(dbh.dbhandler.search_collection(collection_name)[0][1:])
+    for app in app_paths.split(' | '):
+        if system() == 'Windows':
+            startfile(app)
+        if system() == 'Darwin':
+            call(('open', app))
+        if system() == 'Linux':
+            call(('xdg-open', app))  
+
+
 # class handler():                (codes taken from upstream, may be used in the future)
 #     def __init__(self, master):
 #         self.apps = []
@@ -56,15 +70,6 @@ def add_collection_gui():
 #
 #     def addToCanvas(self, fileName):
 #         self.label = tk.Label(frame, text=fileName, bg='white').pack()
-#
-#     def openApps(self):
-#         for path in self.apps:
-#             if system() == 'Windows':
-#                 os.startfile(path)
-#             if system() == 'Darwin':
-#                 call(('open', path))
-#             if system() == 'Linux':
-#                 call(('xdg-open', path))
 #
 #
 #

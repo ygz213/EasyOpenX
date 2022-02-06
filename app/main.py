@@ -47,5 +47,15 @@ delete_collection_button = tk.Button(frame,
                                      text='Delete collection')
 delete_collection_button.pack(pady=5)
 
+tk.Label(frame, text = 'Enter collection name.', bg = '#FFF').pack(pady = (35,7))
+collection_name_to_run = tk.Entry(frame,
+                                  justify = 'center',
+                                  width = 60,
+                                  bg = '#DEDEDE',
+                                  selectforeground = 'black',
+                                  relief = 'flat')
+collection_name_to_run.bind('<Return>', lambda x: ch.run_collection(collection_name_to_run.get()))
+collection_name_to_run.pack(ipady = 5)
+
 
 root.mainloop()

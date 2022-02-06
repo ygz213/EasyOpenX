@@ -27,6 +27,8 @@ You are totally free for whatever sending pull request or opening an issue.
 ## Thanks to
 
 - [Ernesto905](https://github.com/Ernesto905) for original repository
-- Pixel perfect for [cursor](https://flaticon.com/free-icon/cursor_1828365) on the logo   (Icon made by [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) from www.flaticon.com)
 - Freepik for [square outline](https://flaticon.com/free-icon/square-outline_58243) on the logo   (Icon made by [Freepik](https://www.freepik.com/) from www.flaticon.com)
 - www.iconsdb.com for [rounded black square](https://iconsdb.com/black-icons/square-rounded-icon.html) on the logo
+##### Icons made by [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect)
+- [Cursor](https://flaticon.com/free-icon/cursor_1828365) on the logo
+- [Info icon](https://www.flaticon.com/free-icon/info_1828872) on create collection window 

@@ -1,3 +1,8 @@
+# EOX v2.1
+
+- Fixed [unability to open app on Linux or MacOS #2](https://github.com/ygz213/EasyOpenX/issues/6)
+- Added ability to delete `__pycache__` on exit
+
 # EOX v2.0
 
 - Added ability to create collections

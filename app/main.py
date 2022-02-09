@@ -1,6 +1,7 @@
 import tkinter as tk
 import collection_handler as ch
 import database_handler as dbh
+from shutil import rmtree
 
 root = tk.Tk()
 root.title('EasyOpenX')
@@ -58,4 +59,14 @@ collection_name_to_run.bind('<Return>', lambda x: ch.run_collection(collection_n
 collection_name_to_run.pack(ipady = 5)
 
 
+########
+def delete_cache():
+    try:
+        rmtree('__pycache__')
+    except FileNotFoundError:
+        pass
+    root.destroy()
+########
+
+root.protocol("WM_DELETE_WINDOW", lambda: delete_cache())
 root.mainloop()

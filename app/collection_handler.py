@@ -1,9 +1,10 @@
 import tkinter as tk
-from tkinter import messagebox
-from os import startfile
-from platform import system
-from subprocess import call
 import database_handler as dbh
+from tkinter import messagebox
+from subprocess import call
+from platform import system
+if system() == 'Windows':
+    from os import startfile
 
 collection_repo = []
 
@@ -70,7 +71,7 @@ def run_collection(collection_name):
         if system() == 'Darwin':
             call(('open', app))
         if system() == 'Linux':
-            call(('xdg-open', app))  
+            call(('xdg-open', app))
 
 
 # class handler():                (codes taken from upstream, may be used in the future)

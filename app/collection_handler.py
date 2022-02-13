@@ -59,6 +59,7 @@ C:/EasyOpenX/app/main.py | C:/pdfs/linux.pdf | C:/secret.txt'''))
     collection_apps.pack()
 
 
+
 def run_collection(collection_name):
     try:
         app_paths = ''.join(dbh.dbhandler.search_collection(collection_name)[0][1:])
@@ -72,6 +73,31 @@ def run_collection(collection_name):
             call(('open', app))
         if system() == 'Linux':
             call(('xdg-open', app))
+
+
+
+def delete_collection_gui():
+    if not [' '.join(l) for l in dbh.dbhandler.check_collections()]:
+        messagebox.showerror('ERROR', 'No collection found.')
+        return
+
+    delete_window = tk.Toplevel()
+    try:
+        delete_window.wm_iconbitmap('icons/icon.ico')
+    except:
+        delete_window.wm_iconbitmap('@icons/icon.xbm')
+
+    tk.Label(delete_window, text = 'Select the collection you want to delete.', font = 'Tahoma 10 bold').pack()
+    for collection in [' '.join(l) for l in dbh.dbhandler.check_collections()]:
+        tk.Button(delete_window, 
+                  text = f'{collection}',
+                  bg = '#51706D',
+                  fg = '#FFF',
+                  activebackground = '#37524F',
+                  activeforeground = '#FFF',
+                  relief = 'flat',
+                  command = lambda: [dbh.dbhandler.delete_collection(f'{collection}'), delete_window.destroy()]).pack(pady = 4)
+
 
 
 # class handler():                (codes taken from upstream, may be used in the future)

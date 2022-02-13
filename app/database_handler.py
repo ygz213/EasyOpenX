@@ -11,6 +11,10 @@ class edit_db():
         self.cursor.execute(f'''INSERT INTO database VALUES ('{collection_handler.collection_repo[0]}', '{collection_handler.collection_repo[1]}')''')
         self.database.commit()
 
+    def delete_collection(self, collection_name):
+        self.cursor.execute(f'''DELETE FROM database WHERE Collection = '{collection_name}' ''')
+        self.database.commit()
+
     def check_collections(self):
         return self.cursor.execute('''SELECT Collection FROM database''').fetchall()
 

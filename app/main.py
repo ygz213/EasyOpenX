@@ -45,7 +45,8 @@ delete_collection_button = tk.Button(frame,
                                      activebackground = '#96323C',
                                      activeforeground = '#FFF',
                                      relief = 'flat',
-                                     text='Delete collection')
+                                     text = 'Delete collection',
+                                     command = lambda: ch.delete_collection_gui())
 delete_collection_button.pack(pady=5)
 
 tk.Label(frame, text = 'Enter collection name.', bg = '#FFF').pack(pady = (35,7))

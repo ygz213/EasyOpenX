@@ -1,5 +1,5 @@
 from tkinter import messagebox
-from subprocess import call
+from subprocess import Popen
 from platform import system
 import tkinter as tk
 import database_handler as dbh
@@ -71,9 +71,9 @@ def run_collection(collection_name):
         if system() == 'Windows':
             startfile(app)
         if system() == 'Darwin':
-            call(('open', app))
+            Popen(('open', app))
         if system() == 'Linux':
-            call(('xdg-open', app))
+            Popen(('xdg-open', app))
 
 
 

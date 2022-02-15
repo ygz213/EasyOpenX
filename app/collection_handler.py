@@ -1,8 +1,8 @@
-import tkinter as tk
-import database_handler as dbh
 from tkinter import messagebox
 from subprocess import call
 from platform import system
+import tkinter as tk
+import database_handler as dbh
 if system() == 'Windows':
     from os import startfile
 
@@ -65,6 +65,7 @@ def run_collection(collection_name):
         app_paths = ''.join(dbh.dbhandler.search_collection(collection_name)[0][1:])
     except IndexError:
         messagebox.showerror('ERROR', 'No collection found.')
+        return
 
     for app in app_paths.split(' | '):
         if system() == 'Windows':
@@ -89,7 +90,7 @@ def delete_collection_gui():
 
     tk.Label(delete_window, text = 'Select the collection you want to delete.', font = 'Tahoma 10 bold').pack()
     for collection in [' '.join(l) for l in dbh.dbhandler.check_collections()]:
-        tk.Button(delete_window, 
+        tk.Button(delete_window,
                   text = f'{collection}',
                   bg = '#51706D',
                   fg = '#FFF',

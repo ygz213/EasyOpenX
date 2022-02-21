@@ -101,6 +101,70 @@ def delete_collection_gui():
 
 
 
+def edit_collection_gui():
+    if not [' '.join(l) for l in dbh.dbhandler.check_collections()]:
+        messagebox.showerror('ERROR', 'No collection found.')
+        return
+
+    edit_window = tk.Toplevel()
+    try:
+        edit_window.wm_iconbitmap('icons/icon.ico')
+    except:
+        edit_window.wm_iconbitmap('@icons/icon.xbm')
+
+########
+    def edit_collection(collection_name_to_edit):
+        collection_edit_window = tk.Toplevel()
+        try:
+            collection_edit_window.wm_iconbitmap('icons/icon.ico')
+        except:
+            collection_edit_window.wm_iconbitmap('@icons/icon.xbm')
+
+        edited_collectionname_data = tk.StringVar()
+        edited_collectionname_data.set(f'{dbh.dbhandler.search_collection(collection_name_to_edit)[0][0]}')
+        edited_collectionapps_data = tk.StringVar()
+        edited_collectionapps_data.set(f'{dbh.dbhandler.search_collection(collection_name_to_edit)[0][1]}')
+
+        tk.Label(collection_edit_window, text = 'Collection name:', font = 'Tahoma 10 bold').pack()
+        edited_collection_name = tk.Entry(collection_edit_window,
+                                          textvariable = edited_collectionname_data,
+                                          justify = 'center',
+                                          width = 35,
+                                          bd = 4,
+                                          highlightthickness = 2,
+                                          highlightcolor = '#FFF',
+                                          selectforeground = 'black',
+                                          relief = 'flat')
+        edited_collection_name.pack()
+
+        tk.Label(collection_edit_window, text = 'Collection apps:', font = 'Tahoma 10 bold').pack()
+        edited_collection_apps = tk.Entry(collection_edit_window,
+                                          textvariable = edited_collectionapps_data,
+                                          justify = 'center',
+                                          width = 70,
+                                          bd = 4,
+                                          highlightthickness = 2,
+                                          highlightcolor = '#FFF',
+                                          selectforeground = 'black',
+                                          relief = 'flat')
+
+        edited_collection_apps.bind('<Return>', lambda x: [dbh.dbhandler.update_collection(collection_name_to_edit, edited_collection_name.get(), edited_collection_apps.get()), collection_edit_window.destroy()])
+        edited_collection_apps.pack()
+########
+
+    tk.Label(edit_window, text = 'Select the collection you want to edit.', font = 'Tahoma 10 bold').pack()
+    for collection in [' '.join(l) for l in dbh.dbhandler.check_collections()]:
+        tk.Button(edit_window,
+                  text = f'{collection}',
+                  bg = '#51706D',
+                  fg = '#FFF',
+                  activebackground = '#37524F',
+                  activeforeground = '#FFF',
+                  relief = 'flat',
+                  command = lambda: edit_collection(f'{collection}')).pack(pady = 4)
+
+
+
 # class handler():                (codes taken from upstream, may be used in the future)
 #     def __init__(self, master):
 #         self.apps = []

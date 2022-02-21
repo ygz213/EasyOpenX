@@ -1,7 +1,7 @@
+from shutil import rmtree
 import tkinter as tk
 import collection_handler as ch
 import database_handler as dbh
-from shutil import rmtree
 
 root = tk.Tk()
 root.title('EasyOpenX')
@@ -38,6 +38,14 @@ add_collection_button = tk.Button(frame,
                                   text = 'Create collection',
                                   command = lambda: ch.add_collection_gui())
 add_collection_button.pack(pady=5)
+
+edit_collection_button = tk.Button(frame,
+                                   bg = '#A29E74',
+                                   activebackground = '#838058',
+                                   relief = 'flat',
+                                   text = 'Edit collections',
+                                   command = lambda: ch.edit_collection_gui())
+edit_collection_button.pack()
 
 delete_collection_button = tk.Button(frame,
                                      bg = '#D62B47',

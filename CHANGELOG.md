@@ -1,3 +1,9 @@
+# EOX v2.2
+
+- Fixed the [issue that does not let apps get opened simultaneously](https://github.com/ygz213/EasyOpenX/issues/8)
+- Added ability to delete collections
+- Added ability to edit collections
+
 # EOX v2.1
 
 - Fixed [unability to open app on Linux or MacOS #2](https://github.com/ygz213/EasyOpenX/issues/6)

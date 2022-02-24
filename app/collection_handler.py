@@ -9,14 +9,14 @@ if system() == 'Windows':
 collection_repo = []
 
 def add_collection_gui():
-    window = tk.Toplevel()
+    add_window = tk.Toplevel()
     try:
-        window.wm_iconbitmap('icons/icon.ico')
+        add_window.wm_iconbitmap('icons/icon.ico')
     except:
-        window.wm_iconbitmap('@icons/icon.xbm')
+        add_window.wm_iconbitmap('@icons/icon.xbm')
 
-    tk.Label(window, text = 'Collection name:', font = 'Tahoma 10 bold').pack()
-    collection_name = tk.Entry(window,
+    tk.Label(add_window, text = 'Collection name:', font = 'Tahoma 10 bold').pack()
+    collection_name = tk.Entry(add_window,
                                justify = 'center',
                                width = 35,
                                bd = 4,
@@ -25,17 +25,17 @@ def add_collection_gui():
                                selectforeground = 'black',
                                relief = 'flat')
 ########
-    def send_collection():
+    def send_collection():      # This extends collection names and apps to collection_repo and database_handler gets datas from there
         if len(collection_name.get()) == 0 or len(collection_apps.get()) == 0:
             messagebox.showerror('ERROR', 'Invalid data.')
             return
         collection_repo.clear()
         collection_repo.extend([collection_name.get(), collection_apps.get()])
         dbh.dbhandler.create_collection()
-        window.destroy()
+        add_window.destroy()
     collection_name.pack()
 ########
-    info_frame = tk.Frame(window)
+    info_frame = tk.Frame(add_window)
     info_frame.pack()
 
     tk.Label(info_frame, text = 'Collection apps:', font = 'Tahoma 10 bold').grid(column = 0, row = 0)
@@ -47,7 +47,7 @@ C:/EasyOpenX/app/main.py | C:/pdfs/linux.pdf | C:/secret.txt'''))
     info_button.grid(column = 1, row = 0)
 
 
-    collection_apps = tk.Entry(window,
+    collection_apps = tk.Entry(add_window,
                                justify = 'center',
                                width = 70,
                                bd = 4,
@@ -78,7 +78,7 @@ def run_collection(collection_name):
 
 
 def delete_collection_gui():
-    if not [' '.join(l) for l in dbh.dbhandler.check_collections()]:
+    if not dbh.dbhandler.check_collections():
         messagebox.showerror('ERROR', 'No collection found.')
         return
 
@@ -102,7 +102,7 @@ def delete_collection_gui():
 
 
 def edit_collection_gui():
-    if not [' '.join(l) for l in dbh.dbhandler.check_collections()]:
+    if not dbh.dbhandler.check_collections():
         messagebox.showerror('ERROR', 'No collection found.')
         return
 
@@ -121,8 +121,8 @@ def edit_collection_gui():
             collection_edit_window.wm_iconbitmap('@icons/icon.xbm')
 
         edited_collectionname_data = tk.StringVar()
-        edited_collectionname_data.set(f'{dbh.dbhandler.search_collection(collection_name_to_edit)[0][0]}')
-        edited_collectionapps_data = tk.StringVar()
+        edited_collectionname_data.set(f'{collection_name_to_edit}')
+        edited_collectionapps_data = tk.StringVar()     # These are for pasting current apps and datas to entry boxes
         edited_collectionapps_data.set(f'{dbh.dbhandler.search_collection(collection_name_to_edit)[0][1]}')
 
         tk.Label(collection_edit_window, text = 'Collection name:', font = 'Tahoma 10 bold').pack()

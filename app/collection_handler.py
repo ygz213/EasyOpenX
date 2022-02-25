@@ -10,6 +10,7 @@ collection_repo = []
 
 def add_collection_gui():
     add_window = tk.Toplevel()
+    add_window.attributes('-topmost', True)
     add_window.resizable(False, False)
     add_window.focus()
     try:
@@ -85,8 +86,9 @@ def delete_collection_gui():
         return
 
     delete_window = tk.Toplevel()
-    delete_window.focus()
+    delete_window.attributes('-topmost', True)
     delete_window.resizable(False, False)
+    delete_window.focus()
     try:
         delete_window.wm_iconbitmap('icons/icon.ico')
     except:
@@ -111,9 +113,11 @@ def edit_collection_gui():
         return
 
     edit_window = tk.Toplevel()
-    edit_window.focus()
     edit_window.bind('<FocusOut>', lambda x: edit_window.destroy())
     edit_window.resizable(False, False)
+    edit_window.focus()
+    
+    
     try:
         edit_window.wm_iconbitmap('icons/icon.ico')
     except:
@@ -122,8 +126,9 @@ def edit_collection_gui():
 ########
     def edit_collection(collection_name_to_edit):
         collection_edit_window = tk.Toplevel()
-        collection_edit_window.focus()
+        collection_edit_window.attributes('-topmost', True)
         collection_edit_window.resizable(False, False)
+        collection_edit_window.focus()
         try:
             collection_edit_window.wm_iconbitmap('icons/icon.ico')
         except:

@@ -112,6 +112,7 @@ def edit_collection_gui():
 
     edit_window = tk.Toplevel()
     edit_window.focus()
+    edit_window.bind('<FocusOut>', lambda x: edit_window.destroy())
     edit_window.resizable(False, False)
     try:
         edit_window.wm_iconbitmap('icons/icon.ico')

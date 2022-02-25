@@ -10,6 +10,7 @@ collection_repo = []
 
 def add_collection_gui():
     add_window = tk.Toplevel()
+    add_window.resizable(False, False)
     try:
         add_window.wm_iconbitmap('icons/icon.ico')
     except:
@@ -83,6 +84,7 @@ def delete_collection_gui():
         return
 
     delete_window = tk.Toplevel()
+    delete_window.resizable(False, False)
     try:
         delete_window.wm_iconbitmap('icons/icon.ico')
     except:
@@ -107,6 +109,7 @@ def edit_collection_gui():
         return
 
     edit_window = tk.Toplevel()
+    edit_window.resizable(False, False)
     try:
         edit_window.wm_iconbitmap('icons/icon.ico')
     except:
@@ -115,6 +118,7 @@ def edit_collection_gui():
 ########
     def edit_collection(collection_name_to_edit):
         collection_edit_window = tk.Toplevel()
+        collection_edit_window.resizable(False, False)
         try:
             collection_edit_window.wm_iconbitmap('icons/icon.ico')
         except:

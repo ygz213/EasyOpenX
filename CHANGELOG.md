@@ -1,3 +1,10 @@
+# EOX v2.3
+
+- Made windows not resizable
+- Edit collection window will destroy itself when it lose focus (to prevent the problem that it does not get closed after new window opened)
+- Windows will get focus when opening
+- Windows will not leave from foreground (except edit collection window)
+
 # EOX v2.2
 
 - Fixed the [issue that does not let apps get opened simultaneously](https://github.com/ygz213/EasyOpenX/issues/8)

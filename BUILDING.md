@@ -24,9 +24,9 @@ except:
 ```
 and
 ```python
-(collection_handler.py, line 38-39-40-41-42)
+(collection_handler.py, line 41-42-43-44-45)
 
-    info_frame = tk.Frame(window)
+    info_frame = tk.Frame(add_window)
     info_frame.pack()
 
     tk.Label(info_frame, text = 'Collection apps:', font = 'Tahoma 10 bold').grid(column = 0, row = 0)
@@ -35,7 +35,7 @@ and
 parts as
 ```python
 if not hasattr(sys, "frozen"):
-    datafile = os.path.join(os.path.dirname(__file__), "i")
+    datafile = os.path.join(os.path.dirname(__file__), "icon.ico")
 else:
     datafile = os.path.join(sys.prefix, "icon.ico")                 # stuff to show logo in .EXE properly
 def resource_path(relative_path):    
@@ -48,7 +48,7 @@ def resource_path(relative_path):
 (window).iconbitmap(default=resource_path(datafile))
 ```
 ```python
-    info_frame = tk.Frame(window)
+    info_frame = tk.Frame(add_window)
     info_frame.pack()
 
     if not hasattr(sys, "frozen"):

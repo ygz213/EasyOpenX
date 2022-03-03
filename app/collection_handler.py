@@ -8,60 +8,59 @@ if system() == 'Windows':
 
 collection_repo = []
 
-def add_collection_gui():
-    add_window = tk.Toplevel()
-    add_window.attributes('-topmost', True)
-    add_window.resizable(False, False)
-    add_window.focus()
-    try:
-        add_window.wm_iconbitmap('icons/icon.ico')
-    except:
-        add_window.wm_iconbitmap('@icons/icon.xbm')
+class add_collection_gui():
+    def __init__(self):
+        self.add_window = tk.Toplevel()
+        self.add_window.attributes('-topmost', True)
+        self.add_window.resizable(False, False)
+        self.add_window.focus()
+        try:
+            self.add_window.wm_iconbitmap('icons/icon.ico')
+        except:
+            self.add_window.wm_iconbitmap('@icons/icon.xbm')
 
-    tk.Label(add_window, text = 'Collection name:', font = 'Tahoma 10 bold').pack()
-    collection_name = tk.Entry(add_window,
-                               justify = 'center',
-                               width = 35,
-                               bd = 4,
-                               highlightthickness = 2,
-                               highlightcolor = '#FFF',
-                               selectforeground = 'black',
-                               relief = 'flat')
-########
-    def send_collection():      # This extends collection names and apps to collection_repo and database_handler gets datas from there
-        if len(collection_name.get()) == 0 or len(collection_apps.get()) == 0:
+        tk.Label(self.add_window, text = 'Collection name:', font = 'Tahoma 10 bold').pack()
+        self.collection_name = tk.Entry(self.add_window,
+                                   justify = 'center',
+                                   width = 35,
+                                   bd = 4,
+                                   highlightthickness = 2,
+                                   highlightcolor = '#FFF',
+                                   selectforeground = 'black',
+                                   relief = 'flat')
+        self.collection_name.pack()
+
+        self.info_frame = tk.Frame(self.add_window)
+        self.info_frame.pack()
+        tk.Label(self.info_frame, text = 'Collection apps:', font = 'Tahoma 10 bold').grid(column = 0, row = 0)
+        self.info_icon = tk.PhotoImage(file = r'icons/info.png')
+        self.info_button = tk.Button(self.info_frame, relief = 'flat', image = self.info_icon, command = lambda: messagebox.showinfo('EasyOpenX', '''FORMAT:
+
+C:/EasyOpenX/app/main.py | C:/pdfs/linux.pdf | C:/secret.txt'''))
+        self.info_button.image = self.info_icon
+        self.info_button.grid(column = 1, row = 0)
+
+
+        self.collection_apps = tk.Entry(self.add_window,
+                                       justify = 'center',
+                                       width = 70,
+                                       bd = 4,
+                                       highlightthickness = 2,
+                                       highlightcolor = '#FFF',
+                                       selectforeground = 'black',
+                                       relief = 'flat')
+        self.collection_apps.bind('<Return>', lambda x: self.send_collection())
+        self.collection_apps.pack()
+
+
+    def send_collection(self):      # This extends collection names and apps to collection_repo and database_handler gets datas from there
+        if len(self.collection_name.get()) == 0 or len(self.collection_apps.get()) == 0:
             messagebox.showerror('ERROR', 'Invalid data.')
             return
         collection_repo.clear()
-        collection_repo.extend([collection_name.get(), collection_apps.get()])
+        collection_repo.extend([self.collection_name.get(), self.collection_apps.get()])
         dbh.dbhandler.create_collection()
-        add_window.destroy()
-    collection_name.pack()
-########
-    info_frame = tk.Frame(add_window)
-    info_frame.pack()
-
-    tk.Label(info_frame, text = 'Collection apps:', font = 'Tahoma 10 bold').grid(column = 0, row = 0)
-    info_icon = tk.PhotoImage(file = r'icons/info.png')
-    info_button = tk.Button(info_frame, relief = 'flat', image = info_icon, command = lambda: messagebox.showinfo('EasyOpenX', '''FORMAT:
-
-C:/EasyOpenX/app/main.py | C:/pdfs/linux.pdf | C:/secret.txt'''))
-    info_button.image = info_icon
-    info_button.grid(column = 1, row = 0)
-
-
-    collection_apps = tk.Entry(add_window,
-                               justify = 'center',
-                               width = 70,
-                               bd = 4,
-                               highlightthickness = 2,
-                               highlightcolor = '#FFF',
-                               selectforeground = 'black',
-                               relief = 'flat')
-    collection_apps.bind('<Return>', lambda x: send_collection())
-    collection_apps.pack()
-
-
+        self.add_window.destroy()
 
 def run_collection(collection_name):
     try:

@@ -1,3 +1,8 @@
+# EOX v3.0
+
+- Fixed issues about app works for only latest collections ([#12](https://github.com/ygz213/EasyOpenX/issues/12)) ([#13](https://github.com/ygz213/EasyOpenX/issues/13))
+- Changes on code
+
 # EOX v2.3
 
 - Made windows not resizable

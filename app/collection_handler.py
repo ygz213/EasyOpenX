@@ -133,7 +133,7 @@ class edit_collection_gui():
                       activebackground = '#37524F',
                       activeforeground = '#FFF',
                       relief = 'flat',
-                      command = lambda: self.edit_collection(f'{collection}')).pack(pady = 4)
+                      command = lambda collection=collection: self.edit_collection(f'{collection}')).pack(pady = 4)
 
 
     def edit_collection(self, collection_name_to_edit):

@@ -36,7 +36,7 @@ add_collection_button = tk.Button(frame,
                                   activeforeground = '#FFF',
                                   relief = 'flat',
                                   text = 'Create collection',
-                                  command = lambda: ch.add_collection_gui())
+                                  command = ch.add_collection_gui)
 add_collection_button.pack(pady=5)
 
 edit_collection_button = tk.Button(frame,
@@ -44,7 +44,7 @@ edit_collection_button = tk.Button(frame,
                                    activebackground = '#838058',
                                    relief = 'flat',
                                    text = 'Edit collections',
-                                   command = lambda: ch.edit_collection_gui())
+                                   command = ch.edit_collection_gui)
 edit_collection_button.pack()
 
 delete_collection_button = tk.Button(frame,
@@ -54,7 +54,7 @@ delete_collection_button = tk.Button(frame,
                                      activeforeground = '#FFF',
                                      relief = 'flat',
                                      text = 'Delete collection',
-                                     command = lambda: ch.delete_collection_gui())
+                                     command = ch.delete_collection_gui)
 delete_collection_button.pack(pady=5)
 
 tk.Label(frame, text = 'Enter collection name.', bg = '#FFF').pack(pady = (35,7))
@@ -77,5 +77,5 @@ def delete_cache():
     root.destroy()
 ########
 
-root.protocol("WM_DELETE_WINDOW", lambda: delete_cache())
+root.protocol("WM_DELETE_WINDOW", delete_cache)
 root.mainloop()

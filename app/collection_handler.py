@@ -21,13 +21,13 @@ class add_collection_gui():
 
         tk.Label(self.add_window, text = 'Collection name:', font = 'Tahoma 10 bold').pack()
         self.collection_name = tk.Entry(self.add_window,
-                                   justify = 'center',
-                                   width = 35,
-                                   bd = 4,
-                                   highlightthickness = 2,
-                                   highlightcolor = '#FFF',
-                                   selectforeground = 'black',
-                                   relief = 'flat')
+                                        justify = 'center',
+                                        width = 35,
+                                        bd = 4,
+                                        highlightthickness = 2,
+                                        highlightcolor = '#FFF',
+                                        selectforeground = 'black',
+                                        relief = 'flat')
         self.collection_name.pack()
 
         self.info_frame = tk.Frame(self.add_window)
@@ -43,13 +43,13 @@ C:/EasyOpenX/app/main.py | C:/pdfs/linux.pdf | C:/secret.txt'''))
 
 
         self.collection_apps = tk.Entry(self.add_window,
-                                       justify = 'center',
-                                       width = 70,
-                                       bd = 4,
-                                       highlightthickness = 2,
-                                       highlightcolor = '#FFF',
-                                       selectforeground = 'black',
-                                       relief = 'flat')
+                                        justify = 'center',
+                                        width = 70,
+                                        bd = 4,
+                                        highlightthickness = 2,
+                                        highlightcolor = '#FFF',
+                                        selectforeground = 'black',
+                                        relief = 'flat')
         self.collection_apps.bind('<Return>', lambda x: self.send_collection())
         self.collection_apps.pack()
 

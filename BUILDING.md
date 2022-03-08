@@ -10,6 +10,18 @@
 ```python
 import sys
 import os
+
+if not hasattr(sys, "frozen"):
+    datafile = os.path.join(os.path.dirname(__file__), "icon.ico")
+else:
+    datafile = os.path.join(sys.prefix, "icon.ico")                 # stuff to show logo in .EXE properly
+def resource_path(relative_path):    
+    try:       
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 ```
 
 lines to both `main.py` and `collection_handler.py`
@@ -24,49 +36,37 @@ except:
 ```
 and
 ```python
-(collection_handler.py, line 41-42-43-44-45)
+(collection_handler.py, line 33-34-35-36-37)
 
-    info_frame = tk.Frame(add_window)
-    info_frame.pack()
+        self.info_frame = tk.Frame(self.add_window)
+        self.info_frame.pack()
 
-    tk.Label(info_frame, text = 'Collection apps:', font = 'Tahoma 10 bold').grid(column = 0, row = 0)
-    info_icon = tk.PhotoImage(file = r'icons/info.png')
+        tk.Label(self.info_frame, text = 'Collection apps:', font = 'Tahoma 10 bold').grid(column = 0, row = 0)
+        self.info_icon = tk.PhotoImage(file = r'icons/info.png')
 ```
 parts as
 ```python
-if not hasattr(sys, "frozen"):
-    datafile = os.path.join(os.path.dirname(__file__), "icon.ico")
-else:
-    datafile = os.path.join(sys.prefix, "icon.ico")                 # stuff to show logo in .EXE properly
-def resource_path(relative_path):    
-    try:       
-        base_path = sys._MEIPASS
-    except Exception:
-        base_path = os.path.abspath(".")
-
-    return os.path.join(base_path, relative_path)
 (window).iconbitmap(default=resource_path(datafile))
 ```
 ```python
-    info_frame = tk.Frame(add_window)
-    info_frame.pack()
+        self.info_frame = tk.Frame(self.add_window)
+        self.info_frame.pack()
 
-    if not hasattr(sys, "frozen"):
-        datafilex = os.path.join(os.path.dirname(__file__), "info.png")
-    else:
-        datafilex = os.path.join(sys.prefix, "info.png")                 # stuff to show logo in .EXE properly
-    def resource_pathx(relative_path):    
-        try:       
-            base_path = sys._MEIPASS
-        except Exception:
-            base_path = os.path.abspath(".")
+        if not hasattr(sys, "frozen"):
+            datafilex = os.path.join(os.path.dirname(__file__), "info.png")
+        else:
+            datafilex = os.path.join(sys.prefix, "info.png")                 # stuff to show logo in .EXE properly
+        def resource_pathx(relative_path):    
+            try:       
+                base_path = sys._MEIPASS
+            except Exception:
+                base_path = os.path.abspath(".")
 
-        return os.path.join(base_path, relative_path)
+            return os.path.join(base_path, relative_path)
 
-    tk.Label(info_frame, text = 'Collection apps:', font = 'Tahoma 10 bold').grid(column = 0, row = 0)
-    info_icon = tk.PhotoImage(file = resource_pathx(datafilex))
+        tk.Label(self.info_frame, text = 'Collection apps:', font = 'Tahoma 10 bold').grid(column = 0, row = 0)
+        self.info_icon = tk.PhotoImage(file = resource_pathx(datafilex))
 ```
 
-NOTE: `datafile` and `resource_path` names may be changed as `datafilex`, `resource_pathx`, `resource_pathz` etc.
 
 **5-** `cd app/` and run `py -m PyInstaller -n fork --onefile --noconsole --add-data "icon.ico;." --add-data "info.png;." --icon=icon.ico main.py`

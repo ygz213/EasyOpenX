@@ -105,7 +105,7 @@ def delete_collection_gui():
                   activebackground = '#37524F',
                   activeforeground = '#FFF',
                   relief = 'flat',
-                  command = lambda: [dbh.dbhandler.delete_collection(f'{collection}'), delete_window.destroy()]).pack(pady = 4)
+                  command = lambda collection=collection: [dbh.dbhandler.delete_collection(f'{collection}'), delete_window.destroy()]).pack(pady = 4)
 
 
 

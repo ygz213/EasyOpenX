@@ -1,12 +1,11 @@
 from tkinter import messagebox
+from os import path
 from subprocess import Popen
 from platform import system
 import tkinter as tk
 import database_handler as dbh
 if system() == 'Windows':
     from os import startfile
-
-collection_repo = []
 
 class add_collection_gui():
     def __init__(self):
@@ -54,8 +53,16 @@ C:/EasyOpenX/app/main.py | C:/pdfs/linux.pdf | C:/secret.txt'''))
         self.collection_apps.pack()
 
 
+    @staticmethod
+    def check_collection_apps(collection_apps):
+        bool_list = []
+        for paths in collection_apps.split(' | '):       # Checks if file/folder paths exists
+            bool_list.append(path.exists(rf'{paths}'))
+        return False in bool_list       # If function returns True, this means there are broken paths or entry format is not valid (split(' | ') checks this)
+
+
     def send_collection(self):
-        if len(self.collection_name.get()) == 0 or len(self.collection_apps.get()) == 0:
+        if len(self.collection_name.get()) == 0 or len(self.collection_apps.get()) == 0 or add_collection_gui.check_collection_apps(self.collection_apps.get()):
             messagebox.showerror('ERROR', 'Invalid data.')
             return
         dbh.dbhandler.create_collection(self.collection_name.get(), self.collection_apps.get())

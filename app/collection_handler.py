@@ -54,13 +54,11 @@ C:/EasyOpenX/app/main.py | C:/pdfs/linux.pdf | C:/secret.txt'''))
         self.collection_apps.pack()
 
 
-    def send_collection(self):      # This extends collection names and apps to collection_repo and database_handler gets datas from there
+    def send_collection(self):
         if len(self.collection_name.get()) == 0 or len(self.collection_apps.get()) == 0:
             messagebox.showerror('ERROR', 'Invalid data.')
             return
-        collection_repo.clear()
-        collection_repo.extend([self.collection_name.get(), self.collection_apps.get()])
-        dbh.dbhandler.create_collection()
+        dbh.dbhandler.create_collection(self.collection_name.get(), self.collection_apps.get())
         self.add_window.destroy()
 
 

@@ -20,7 +20,7 @@ frame.place(x=0,y=80,relheight=0.8,relwidth=1)
 def print_collections():
     if dbh.dbhandler.check_collections() is not None:
         collectionnames_as_string = [' '.join(l) for l in dbh.dbhandler.check_collections()]
-        collection_data.set(' '.join(str(x) for x in collectionnames_as_string).replace(' ', ' | '))
+        collection_data.set(' | '.join(collectionnames_as_string))
         collections.after(1000,  print_collections)
 ########
 

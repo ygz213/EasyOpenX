@@ -11,11 +11,11 @@ try:
 except:
     root.wm_iconbitmap('@icons/icon.xbm')
 
-canvas = tk.Canvas(root, height=700, width=700, bg = 'white')
-canvas.create_text(100, 50, text='   Current Collections:', fill='black', font=('Tahoma 15 bold'))
+canvas = tk.Canvas(root, height = 700, width = 700)
+canvas.create_text(100, 50, text = '   Current Collections:', fill = 'black', font = ('Tahoma 15 bold'))
 canvas.pack()
-frame = tk.Frame(canvas, bg = 'white')
-frame.place(x=0,y=80,relheight=0.8,relwidth=1)
+frame = tk.Frame(canvas)
+frame.place(x = 0, y = 80, relheight = 0.8, relwidth = 1)
 
 ########
 def print_collections():
@@ -26,32 +26,32 @@ def print_collections():
 ########
 
 collection_data = tk.StringVar()
-collections = tk.Label(frame, bg = '#FFF', textvariable = collection_data)
+collections = tk.Label(frame, textvariable = collection_data)
 collections.pack()
 print_collections()
 
 add_collection_button = ttk.Button(frame,
-                                  text = 'Create collection',
-                                  bootstyle = 'warning',
-                                  command = ch.add_collection_gui)
-add_collection_button.pack(pady=5)
+                                   text = 'Create collection',
+                                   bootstyle = 'warning',
+                                   command = ch.add_collection_gui)
+add_collection_button.pack(pady = 5)
 
 edit_collection_button = ttk.Button(frame,
-                                   text = 'Edit collections',
-                                   bootstyle = 'secondary',
-                                   command = ch.edit_collection_gui)
+                                    text = 'Edit collections',
+                                    bootstyle = 'secondary',
+                                    command = ch.edit_collection_gui)
 edit_collection_button.pack()
 
 delete_collection_button = ttk.Button(frame,
-                                     text = 'Delete collection',
-                                     bootstyle = 'danger',
-                                     command = ch.delete_collection_gui)
-delete_collection_button.pack(pady=5)
+                                      text = 'Delete collection',
+                                      bootstyle = 'danger',
+                                      command = ch.delete_collection_gui)
+delete_collection_button.pack(pady = 5)
 
-tk.Label(frame, text = 'Enter collection name.', bg = '#FFF').pack(pady = (35,7))
+tk.Label(frame, text = 'Enter collection name.').pack(pady = (35,7))
 collection_name_to_run = ttk.Entry(frame,
-                                  justify = 'center',
-                                  width = 60)
+                                   justify = 'center',
+                                   width = 60)
 collection_name_to_run.bind('<Return>', lambda x: ch.run_collection(collection_name_to_run.get()))
 collection_name_to_run.pack(ipady = 5)
 

@@ -1,4 +1,3 @@
-from tkinter import messagebox
 from os import path
 from subprocess import Popen
 from platform import system
@@ -31,7 +30,9 @@ class add_collection_gui():
 
         tk.Label(self.info_frame, text = 'Collection apps:', font = 'Tahoma 10 bold').grid(column = 0, row = 0)
         self.info_icon = tk.PhotoImage(file = r'icons/info.png')
-        self.info_button = tk.Button(self.info_frame, image = self.info_icon, command = lambda: Messagebox.show_info('''FORMAT:
+        self.info_button = tk.Button(self.info_frame,
+                                     image = self.info_icon,
+                                     command = lambda: Messagebox.show_info('''FORMAT:
 
 C:/EasyOpenX/app/main.py | C:/pdfs/linux.pdf | C:/secret.txt''', title = 'EasyOpenX'))
         self.info_button.configure(bg = 'white')
@@ -40,8 +41,8 @@ C:/EasyOpenX/app/main.py | C:/pdfs/linux.pdf | C:/secret.txt''', title = 'EasyOp
 
 
         self.collection_apps = ttk.Entry(self.add_window,
-                                        justify = 'center',
-                                        width = 70)
+                                         justify = 'center',
+                                         width = 70)
         self.collection_apps.bind('<Return>', lambda x: self.send_collection())
         self.collection_apps.pack()
 
@@ -97,9 +98,9 @@ def delete_collection_gui():
     tk.Label(delete_window, text = 'Select the collection you want to delete.', font = 'Tahoma 10 bold').pack()
     for collection in [' '.join(l) for l in dbh.dbhandler.check_collections()]:
         ttk.Button(delete_window,
-                  text = f'{collection}',
-                  bootstyle = 'danger-outline',
-                  command = lambda collection=collection: [dbh.dbhandler.delete_collection(f'{collection}'), delete_window.destroy()]).pack(pady = 4)
+                   text = f'{collection}',
+                   bootstyle = 'danger-outline',
+                   command = lambda collection = collection: [dbh.dbhandler.delete_collection(f'{collection}'), delete_window.destroy()]).pack(pady = 4)
 
 
 
@@ -121,9 +122,9 @@ class edit_collection_gui():
         tk.Label(self.edit_window, text = 'Select the collection you want to edit.', font = 'Tahoma 10 bold').pack()
         for collection in [' '.join(l) for l in dbh.dbhandler.check_collections()]:
             ttk.Button(self.edit_window,
-                      text = f'{collection}',
+                       text = f'{collection}',
                        bootstyle = 'secondary-outline',
-                      command = lambda collection=collection: self.edit_collection(f'{collection}')).pack(pady = 4)
+                       command = lambda collection = collection: self.edit_collection(f'{collection}')).pack(pady = 4)
 
 
     def edit_collection(self, collection_name_to_edit):
@@ -143,16 +144,16 @@ class edit_collection_gui():
 
         tk.Label(self.collection_edit_window, text = 'Collection name:', font = 'Tahoma 10 bold').pack()
         self.edited_collection_name = ttk.Entry(self.collection_edit_window,
-                                               textvariable = self.edited_collectionname_data,
-                                               justify = 'center',
-                                               width = 35)
+                                                textvariable = self.edited_collectionname_data,
+                                                justify = 'center',
+                                                width = 35)
         self.edited_collection_name.pack()
 
         tk.Label(self.collection_edit_window, text = 'Collection apps:', font = 'Tahoma 10 bold').pack()
         self.edited_collection_apps = ttk.Entry(self.collection_edit_window,
-                                               textvariable = self.edited_collectionapps_data,
-                                               justify = 'center',
-                                               width = 70)
+                                                textvariable = self.edited_collectionapps_data,
+                                                justify = 'center',
+                                                width = 70)
 
         self.edited_collection_apps.bind('<Return>', lambda x: [dbh.dbhandler.update_collection(collection_name_to_edit, self.edited_collection_name.get(), self.edited_collection_apps.get()), self.collection_edit_window.destroy()])
         self.edited_collection_apps.pack()

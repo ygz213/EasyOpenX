@@ -3,6 +3,8 @@ from os import path
 from subprocess import Popen
 from platform import system
 import tkinter as tk
+import ttkbootstrap as ttk
+from ttkbootstrap.dialogs import Messagebox
 import database_handler as dbh
 if system() == 'Windows':
     from os import startfile
@@ -19,14 +21,9 @@ class add_collection_gui():
             self.add_window.wm_iconbitmap('@icons/icon.xbm')
 
         tk.Label(self.add_window, text = 'Collection name:', font = 'Tahoma 10 bold').pack()
-        self.collection_name = tk.Entry(self.add_window,
-                                        justify = 'center',
-                                        width = 35,
-                                        bd = 4,
-                                        highlightthickness = 2,
-                                        highlightcolor = '#FFF',
-                                        selectforeground = 'black',
-                                        relief = 'flat')
+        self.collection_name = ttk.Entry(self.add_window,
+                                         justify = 'center',
+                                         width = 35)
         self.collection_name.pack()
 
         self.info_frame = tk.Frame(self.add_window)
@@ -34,21 +31,17 @@ class add_collection_gui():
 
         tk.Label(self.info_frame, text = 'Collection apps:', font = 'Tahoma 10 bold').grid(column = 0, row = 0)
         self.info_icon = tk.PhotoImage(file = r'icons/info.png')
-        self.info_button = tk.Button(self.info_frame, relief = 'flat', image = self.info_icon, command = lambda: messagebox.showinfo('EasyOpenX', '''FORMAT:
+        self.info_button = tk.Button(self.info_frame, image = self.info_icon, command = lambda: Messagebox.show_info('''FORMAT:
 
-C:/EasyOpenX/app/main.py | C:/pdfs/linux.pdf | C:/secret.txt'''))
+C:/EasyOpenX/app/main.py | C:/pdfs/linux.pdf | C:/secret.txt''', title = 'EasyOpenX'))
+        self.info_button.configure(bg = 'white')
         self.info_button.image = self.info_icon
         self.info_button.grid(column = 1, row = 0)
 
 
-        self.collection_apps = tk.Entry(self.add_window,
+        self.collection_apps = ttk.Entry(self.add_window,
                                         justify = 'center',
-                                        width = 70,
-                                        bd = 4,
-                                        highlightthickness = 2,
-                                        highlightcolor = '#FFF',
-                                        selectforeground = 'black',
-                                        relief = 'flat')
+                                        width = 70)
         self.collection_apps.bind('<Return>', lambda x: self.send_collection())
         self.collection_apps.pack()
 
@@ -63,7 +56,7 @@ C:/EasyOpenX/app/main.py | C:/pdfs/linux.pdf | C:/secret.txt'''))
 
     def send_collection(self):
         if len(self.collection_name.get()) == 0 or len(self.collection_apps.get()) == 0 or add_collection_gui.check_collection_apps(self.collection_apps.get()):
-            messagebox.showerror('ERROR', 'Invalid data.')
+            Messagebox.show_error('Invalid data.', title = 'ERROR')
             return
         dbh.dbhandler.create_collection(self.collection_name.get(), self.collection_apps.get())
         self.add_window.destroy()
@@ -74,7 +67,7 @@ def run_collection(collection_name):
     try:
         app_paths = ''.join(dbh.dbhandler.search_collection(collection_name)[0][1:])
     except IndexError:
-        messagebox.showerror('ERROR', 'No collection found.')
+        Messagebox.show_error('No collection found.', title = 'ERROR')
         return
 
     for app in app_paths.split(' | '):
@@ -89,7 +82,7 @@ def run_collection(collection_name):
 
 def delete_collection_gui():
     if not dbh.dbhandler.check_collections():
-        messagebox.showerror('ERROR', 'No collection found.')
+        Messagebox.show_error('No collection found.', title = 'ERROR')
         return
 
     delete_window = tk.Toplevel()
@@ -103,13 +96,9 @@ def delete_collection_gui():
 
     tk.Label(delete_window, text = 'Select the collection you want to delete.', font = 'Tahoma 10 bold').pack()
     for collection in [' '.join(l) for l in dbh.dbhandler.check_collections()]:
-        tk.Button(delete_window,
+        ttk.Button(delete_window,
                   text = f'{collection}',
-                  bg = '#51706D',
-                  fg = '#FFF',
-                  activebackground = '#37524F',
-                  activeforeground = '#FFF',
-                  relief = 'flat',
+                  bootstyle = 'danger-outline',
                   command = lambda collection=collection: [dbh.dbhandler.delete_collection(f'{collection}'), delete_window.destroy()]).pack(pady = 4)
 
 
@@ -117,7 +106,7 @@ def delete_collection_gui():
 class edit_collection_gui():
     def __init__(self):
         if not dbh.dbhandler.check_collections():
-            messagebox.showerror('ERROR', 'No collection found.')
+            Messagebox.show_error('No collection found.', title = 'ERROR')
             return
 
         self.edit_window = tk.Toplevel()
@@ -131,13 +120,9 @@ class edit_collection_gui():
 
         tk.Label(self.edit_window, text = 'Select the collection you want to edit.', font = 'Tahoma 10 bold').pack()
         for collection in [' '.join(l) for l in dbh.dbhandler.check_collections()]:
-            tk.Button(self.edit_window,
+            ttk.Button(self.edit_window,
                       text = f'{collection}',
-                      bg = '#51706D',
-                      fg = '#FFF',
-                      activebackground = '#37524F',
-                      activeforeground = '#FFF',
-                      relief = 'flat',
+                       bootstyle = 'secondary-outline',
                       command = lambda collection=collection: self.edit_collection(f'{collection}')).pack(pady = 4)
 
 
@@ -157,27 +142,17 @@ class edit_collection_gui():
         self.edited_collectionapps_data.set(f'{dbh.dbhandler.search_collection(collection_name_to_edit)[0][1]}')
 
         tk.Label(self.collection_edit_window, text = 'Collection name:', font = 'Tahoma 10 bold').pack()
-        self.edited_collection_name = tk.Entry(self.collection_edit_window,
+        self.edited_collection_name = ttk.Entry(self.collection_edit_window,
                                                textvariable = self.edited_collectionname_data,
                                                justify = 'center',
-                                               width = 35,
-                                               bd = 4,
-                                               highlightthickness = 2,
-                                               highlightcolor = '#FFF',
-                                               selectforeground = 'black',
-                                               relief = 'flat')
+                                               width = 35)
         self.edited_collection_name.pack()
 
         tk.Label(self.collection_edit_window, text = 'Collection apps:', font = 'Tahoma 10 bold').pack()
-        self.edited_collection_apps = tk.Entry(self.collection_edit_window,
+        self.edited_collection_apps = ttk.Entry(self.collection_edit_window,
                                                textvariable = self.edited_collectionapps_data,
                                                justify = 'center',
-                                               width = 70,
-                                               bd = 4,
-                                               highlightthickness = 2,
-                                               highlightcolor = '#FFF',
-                                               selectforeground = 'black',
-                                               relief = 'flat')
+                                               width = 70)
 
         self.edited_collection_apps.bind('<Return>', lambda x: [dbh.dbhandler.update_collection(collection_name_to_edit, self.edited_collection_name.get(), self.edited_collection_apps.get()), self.collection_edit_window.destroy()])
         self.edited_collection_apps.pack()

@@ -1,3 +1,10 @@
+# EOX v3.3
+
+- Fixed [unability to show collections correctly](https://github.com/ygz213/EasyOpenX/issues/15)
+- Added ability to check given file/folder paths when creating or editing collection
+- Started to use ttkbootstrap
+- Changes on code
+
 # EOX v3.0
 
 - Fixed issues about app works for only latest collections ([#12](https://github.com/ygz213/EasyOpenX/issues/12)) ([#13](https://github.com/ygz213/EasyOpenX/issues/13))

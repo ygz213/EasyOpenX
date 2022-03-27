@@ -8,6 +8,12 @@ import database_handler as dbh
 if system() == 'Windows':
     from os import startfile
 
+def check_format(collection_name, collection_apps):
+    if len(collection_name) == 0 or len(collection_apps) == 0 or add_collection_gui.check_collection_apps(collection_apps):
+        Messagebox.show_error('Invalid data.', title = 'ERROR')
+        return True
+
+
 class add_collection_gui():
     def __init__(self):
         self.add_window = tk.Toplevel()
@@ -43,7 +49,7 @@ C:/EasyOpenX/app/main.py | C:/pdfs/linux.pdf | C:/secret.txt''', title = 'EasyOp
         self.collection_apps = ttk.Entry(self.add_window,
                                          justify = 'center',
                                          width = 70)
-        self.collection_apps.bind('<Return>', lambda x: self.send_collection())
+        self.collection_apps.bind('<Return>', lambda x: None if check_format(self.collection_name.get(), self.collection_apps.get()) else self.create_collection())        # Do nothing if check_format returns True, else create collection
         self.collection_apps.pack()
 
 
@@ -55,10 +61,7 @@ C:/EasyOpenX/app/main.py | C:/pdfs/linux.pdf | C:/secret.txt''', title = 'EasyOp
         return False in bool_list       # If function returns True, this means there are broken paths or entry format is not valid (split(' | ') checks this)
 
 
-    def send_collection(self):
-        if len(self.collection_name.get()) == 0 or len(self.collection_apps.get()) == 0 or add_collection_gui.check_collection_apps(self.collection_apps.get()):
-            Messagebox.show_error('Invalid data.', title = 'ERROR')
-            return
+    def create_collection(self):
         dbh.dbhandler.create_collection(self.collection_name.get(), self.collection_apps.get())
         self.add_window.destroy()
 
@@ -155,8 +158,13 @@ class edit_collection_gui():
                                                 justify = 'center',
                                                 width = 70)
 
-        self.edited_collection_apps.bind('<Return>', lambda x: [dbh.dbhandler.update_collection(collection_name_to_edit, self.edited_collection_name.get(), self.edited_collection_apps.get()), self.collection_edit_window.destroy()])
+        self.edited_collection_apps.bind('<Return>', lambda x: None if check_format(self.edited_collection_name.get(), self.edited_collection_apps.get()) else self.update_collection(collection_name_to_edit))
         self.edited_collection_apps.pack()
+
+
+    def update_collection(self, collection_name_to_edit):
+        dbh.dbhandler.update_collection(collection_name_to_edit, self.edited_collection_name.get(), self.edited_collection_apps.get())
+        self.collection_edit_window.destroy()
 
 
 

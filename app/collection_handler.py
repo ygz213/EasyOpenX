@@ -8,8 +8,14 @@ import database_handler as dbh
 if system() == 'Windows':
     from os import startfile
 
+def check_collection_apps(collection_apps):
+    bool_list = []
+    for paths in collection_apps.split(' | '):       # Checks if file/folder paths exists
+        bool_list.append(path.exists(rf'{paths}'))
+    return False in bool_list       # If function returns True, this means there are broken paths or entry format is not valid (split(' | ') checks this)
+
 def check_format(collection_name, collection_apps):
-    if len(collection_name) == 0 or len(collection_apps) == 0 or add_collection_gui.check_collection_apps(collection_apps):
+    if len(collection_name) == 0 or len(collection_apps) == 0 or check_collection_apps(collection_apps):
         Messagebox.show_error('Invalid data.', title = 'ERROR')
         return True
 
@@ -51,14 +57,6 @@ C:/EasyOpenX/app/main.py | C:/pdfs/linux.pdf | C:/secret.txt''', title = 'EasyOp
                                          width = 70)
         self.collection_apps.bind('<Return>', lambda x: None if check_format(self.collection_name.get(), self.collection_apps.get()) else self.create_collection())        # Do nothing if check_format returns True, else create collection
         self.collection_apps.pack()
-
-
-    @staticmethod
-    def check_collection_apps(collection_apps):
-        bool_list = []
-        for paths in collection_apps.split(' | '):       # Checks if file/folder paths exists
-            bool_list.append(path.exists(rf'{paths}'))
-        return False in bool_list       # If function returns True, this means there are broken paths or entry format is not valid (split(' | ') checks this)
 
 
     def create_collection(self):

@@ -9,9 +9,10 @@
 
 This is a fork of EasyOpen which opens a collection of programs simultaneously.
 
-## Requirement
+## Requirements
 
-- Only requirement is Python 3.6 and above
+- Python 3.6 and above
+- [ttkbootstrap](https://github.com/israel-dryer/ttkbootstrap) module
 
 ## Installation
 

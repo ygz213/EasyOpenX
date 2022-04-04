@@ -1,4 +1,5 @@
-from os import path
+from os import path, getcwd
+from tkinter import filedialog
 from subprocess import Popen
 from platform import system
 import tkinter as tk
@@ -18,6 +19,20 @@ def check_format(collection_name, collection_apps):
     if len(collection_name) == 0 or len(collection_apps) == 0 or check_collection_apps(collection_apps):
         Messagebox.show_error('Invalid data.', title = 'ERROR')
         return True
+
+def insert_path(collection_apps):
+    path = filedialog.askopenfilename(initialdir = f'{getcwd()}', title = 'Select file...', filetypes = ([('All files', '*.*')]))
+
+    if not bool(collection_apps.get()):       # When entry box is empty
+        collection_apps.insert('end', f'{path} | ')
+    elif collection_apps.get()[-1] == '|':       # When it is like "C:/EasyOpenX/app/main.py |"
+        collection_apps.insert('end', f' {path} | ')
+    elif collection_apps.get()[-1] == ' ':       # When it is like "C:/EasyOpenX/app/main.py | " (This can be hacked "C:/EasyOpenX/app/main.py ")
+        collection_apps.insert('end', f'{path} | ')
+    else:       # When it is like "C:/EasyOpenX/app/main.py" or anything else
+        collection_apps.insert('end', f' | {path} | ')
+
+    collection_apps.focus()
 
 
 class add_collection_gui():
@@ -51,6 +66,7 @@ C:/EasyOpenX/app/main.py | C:/pdfs/linux.pdf | C:/secret.txt''', title = 'EasyOp
         self.info_button.image = self.info_icon
         self.info_button.grid(column = 1, row = 0)
 
+        ttk.Button(self.info_frame, text = 'Select file', bootstyle = 'warning-outline', command = lambda: insert_path(self.collection_apps)).grid(column = 2, row = 0, padx = (5, 0))
 
         self.collection_apps = ttk.Entry(self.add_window,
                                          justify = 'center',
@@ -150,7 +166,13 @@ class edit_collection_gui():
                                                 width = 35)
         self.edited_collection_name.pack()
 
-        tk.Label(self.collection_edit_window, text = 'Collection apps:', font = 'Tahoma 10 bold').pack()
+        self.info_frame = tk.Frame(self.collection_edit_window)
+        self.info_frame.pack()
+
+        tk.Label(self.info_frame, text = 'Collection apps:', font = 'Tahoma 10 bold').grid(column = 0, row = 0)
+
+        ttk.Button(self.info_frame, text = 'Select file', bootstyle = 'secondary-outline', command = lambda: insert_path(self.edited_collection_apps)).grid(column = 2, row = 0, padx = (5, 0))
+
         self.edited_collection_apps = ttk.Entry(self.collection_edit_window,
                                                 textvariable = self.edited_collectionapps_data,
                                                 justify = 'center',
@@ -163,22 +185,3 @@ class edit_collection_gui():
     def update_collection(self, collection_name_to_edit):
         dbh.dbhandler.update_collection(collection_name_to_edit, self.edited_collection_name.get(), self.edited_collection_apps.get())
         self.collection_edit_window.destroy()
-
-
-
-# class handler():                (codes taken from upstream, may be used in the future)
-#     def __init__(self, master):
-#         self.apps = []
-#
-#     def addApp(self):
-#         filename = filedialog.askopenfilename(initialdir=f'{os.getcwd()}', title='Select file...', filetypes=([('All files', '*.*')]))
-#
-#         self.apps.append(filename)
-#         self.addToCanvas(filename)
-#
-#     def addToCanvas(self, fileName):
-#         self.label = tk.Label(frame, text=fileName, bg='white').pack()
-#
-#
-#
-# functions: platform.system(), os.startfile(), subprocess.call(), tk.filedialog.askopenfilename()

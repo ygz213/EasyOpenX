@@ -1,3 +1,7 @@
+# EOX v3.4
+
+- Added ability to add collections with filedialog.askopenfilename()
+
 # EOX v3.3
 
 - Fixed [unability to show collections correctly](https://github.com/ygz213/EasyOpenX/issues/15)

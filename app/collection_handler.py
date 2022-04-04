@@ -33,6 +33,7 @@ def insert_path(collection_apps):
         collection_apps.insert('end', f' | {path} | ')
 
     collection_apps.focus()
+    collection_apps.xview_moveto(1)
 
 
 class add_collection_gui():
@@ -177,7 +178,6 @@ class edit_collection_gui():
                                                 textvariable = self.edited_collectionapps_data,
                                                 justify = 'center',
                                                 width = 70)
-
         self.edited_collection_apps.bind('<Return>', lambda x: None if check_format(self.edited_collection_name.get(), self.edited_collection_apps.get()) else self.update_collection(collection_name_to_edit))
         self.edited_collection_apps.pack()
 

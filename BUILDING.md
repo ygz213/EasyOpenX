@@ -36,7 +36,7 @@ except:
 ```
 and
 ```python
-(collection_handler.py, line 40-41-42-43-44)
+(collection_handler.py, line 56-57-58-59-60)
 
         self.info_frame = tk.Frame(self.add_window)
         self.info_frame.pack()

@@ -1,3 +1,8 @@
+# EOX v3.5 (The final release)
+
+- Changed non-bold labels' fonts
+- Changes on code
+
 # EOX v3.4
 
 - Added ability to add collections with filedialog.askopenfilename()

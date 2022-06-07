@@ -14,7 +14,11 @@ except:
 canvas = tk.Canvas(root,
                    height = 700,
                    width = 700)
-canvas.create_text(100, 50, text = '   Current Collections:', fill = 'black', font = ('Tahoma 15 bold'))
+canvas.create_text(100,
+                   50,
+                   text = '   Current Collections:',
+                   fill = 'black',
+                   font = 'Tahoma 15 bold')
 canvas.pack()
 frame = tk.Frame(canvas)
 frame.place(x = 0, y = 80, relheight = 0.8, relwidth = 1)
@@ -28,7 +32,9 @@ def print_collections():
 ########
 
 collection_data = tk.StringVar()
-collections = tk.Label(frame, textvariable = collection_data)
+collections = tk.Label(frame,
+                       textvariable = collection_data,
+                       font = 'Tahoma 10')
 collections.pack()
 print_collections()
 
@@ -50,7 +56,9 @@ delete_collection_button = ttk.Button(frame,
                                       command = ch.delete_collection_gui)
 delete_collection_button.pack(pady = 5)
 
-tk.Label(frame, text = 'Enter collection name.').pack(pady = (35,7))
+tk.Label(frame,
+         text = 'Enter collection name.',
+         font = 'Tahoma 10').pack(pady = (35,7))
 collection_name_to_run = ttk.Entry(frame,
                                    justify = 'center',
                                    width = 60)

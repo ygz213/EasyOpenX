@@ -168,10 +168,12 @@ class edit_collection_gui():
 
         self.edited_collectionname_data = tk.StringVar()
         self.edited_collectionname_data.set(f'{collection_name_to_edit}')
-        self.edited_collectionapps_data = tk.StringVar()     # These are for pasting current apps and datas to entry boxes, and being used to get edited collection names and data
+        self.edited_collectionapps_data = tk.StringVar()     # These are for pasting current apps and data to entry boxes, and being used to get edited collection names and data
         self.edited_collectionapps_data.set(f'{dbh.dbhandler.search_collection(collection_name_to_edit)[0][1]}')
 
-        tk.Label(self.collection_edit_window, text = 'Collection name:', font = 'Tahoma 10 bold').pack()
+        tk.Label(self.collection_edit_window,
+                 text = 'Collection name:',
+                 font = 'Tahoma 10 bold').pack()
         self.edited_collection_name = ttk.Entry(self.collection_edit_window,
                                                 textvariable = self.edited_collectionname_data,
                                                 justify = 'center',

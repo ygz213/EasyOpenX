@@ -36,12 +36,14 @@ except:
 ```
 and
 ```python
-(collection_handler.py, line 56-57-58-59-60)
+(collection_handler.py, line 57-58-59-60-61-62-63-64)
 
         self.info_frame = tk.Frame(self.add_window)
         self.info_frame.pack()
 
-        tk.Label(self.info_frame, text = 'Collection apps:', font = 'Tahoma 10 bold').grid(column = 0, row = 0)
+        tk.Label(self.info_frame,
+                 text = 'Collection apps:',
+                 font = 'Tahoma 10 bold').grid(column = 0, row = 0)
         self.info_icon = tk.PhotoImage(file = r'icons/info.png')
 ```
 parts as

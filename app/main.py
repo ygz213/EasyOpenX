@@ -11,7 +11,9 @@ try:
 except:
     root.wm_iconbitmap('@icons/icon.xbm')
 
-canvas = tk.Canvas(root, height = 700, width = 700)
+canvas = tk.Canvas(root,
+                   height = 700,
+                   width = 700)
 canvas.create_text(100, 50, text = '   Current Collections:', fill = 'black', font = ('Tahoma 15 bold'))
 canvas.pack()
 frame = tk.Frame(canvas)

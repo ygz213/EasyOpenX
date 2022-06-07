@@ -1,7 +1,7 @@
 from os import path, getcwd
-from tkinter import filedialog
-from subprocess import Popen
 from platform import system
+from subprocess import Popen
+from tkinter import filedialog
 import tkinter as tk
 import ttkbootstrap as ttk
 from ttkbootstrap.dialogs import Messagebox
@@ -47,7 +47,9 @@ class add_collection_gui():
         except:
             self.add_window.wm_iconbitmap('@icons/icon.xbm')
 
-        tk.Label(self.add_window, text = 'Collection name:', font = 'Tahoma 10 bold').pack()
+        tk.Label(self.add_window,
+                 text = 'Collection name:',
+                 font = 'Tahoma 10 bold').pack()
         self.collection_name = ttk.Entry(self.add_window,
                                          justify = 'center',
                                          width = 35)
@@ -56,7 +58,9 @@ class add_collection_gui():
         self.info_frame = tk.Frame(self.add_window)
         self.info_frame.pack()
 
-        tk.Label(self.info_frame, text = 'Collection apps:', font = 'Tahoma 10 bold').grid(column = 0, row = 0)
+        tk.Label(self.info_frame,
+                 text = 'Collection apps:',
+                 font = 'Tahoma 10 bold').grid(column = 0, row = 0)
         self.info_icon = tk.PhotoImage(file = r'icons/info.png')
         self.info_button = tk.Button(self.info_frame,
                                      image = self.info_icon,
@@ -67,7 +71,10 @@ C:/EasyOpenX/app/main.py | C:/pdfs/linux.pdf | C:/secret.txt''', title = 'EasyOp
         self.info_button.image = self.info_icon
         self.info_button.grid(column = 1, row = 0)
 
-        ttk.Button(self.info_frame, text = 'Select file', bootstyle = 'warning-outline', command = lambda: insert_path(self.collection_apps)).grid(column = 2, row = 0, padx = (5, 0))
+        ttk.Button(self.info_frame,
+                   text = 'Select file',
+                   bootstyle = 'warning-outline',
+                   command = lambda: insert_path(self.collection_apps)).grid(column = 2, row = 0, padx = (5, 0))
 
         self.collection_apps = ttk.Entry(self.add_window,
                                          justify = 'center',
@@ -113,7 +120,9 @@ def delete_collection_gui():
     except:
         delete_window.wm_iconbitmap('@icons/icon.xbm')
 
-    tk.Label(delete_window, text = 'Select the collection you want to delete.', font = 'Tahoma 10 bold').pack()
+    tk.Label(delete_window,
+             text = 'Select the collection you want to delete.',
+             font = 'Tahoma 10 bold').pack()
     for collection in [' '.join(l) for l in dbh.dbhandler.check_collections()]:
         ttk.Button(delete_window,
                    text = f'{collection}',
@@ -137,7 +146,9 @@ class edit_collection_gui():
         except:
             self.edit_window.wm_iconbitmap('@icons/icon.xbm')
 
-        tk.Label(self.edit_window, text = 'Select the collection you want to edit.', font = 'Tahoma 10 bold').pack()
+        tk.Label(self.edit_window,
+                 text = 'Select the collection you want to edit.',
+                 font = 'Tahoma 10 bold').pack()
         for collection in [' '.join(l) for l in dbh.dbhandler.check_collections()]:
             ttk.Button(self.edit_window,
                        text = f'{collection}',
@@ -170,9 +181,14 @@ class edit_collection_gui():
         self.info_frame = tk.Frame(self.collection_edit_window)
         self.info_frame.pack()
 
-        tk.Label(self.info_frame, text = 'Collection apps:', font = 'Tahoma 10 bold').grid(column = 0, row = 0)
+        tk.Label(self.info_frame,
+                 text = 'Collection apps:',
+                 font = 'Tahoma 10 bold').grid(column = 0, row = 0)
 
-        ttk.Button(self.info_frame, text = 'Select file', bootstyle = 'secondary-outline', command = lambda: insert_path(self.edited_collection_apps)).grid(column = 2, row = 0, padx = (5, 0))
+        ttk.Button(self.info_frame,
+                   text = 'Select file',
+                   bootstyle = 'secondary-outline',
+                   command = lambda: insert_path(self.edited_collection_apps)).grid(column = 2, row = 0, padx = (5, 0))
 
         self.edited_collection_apps = ttk.Entry(self.collection_edit_window,
                                                 textvariable = self.edited_collectionapps_data,

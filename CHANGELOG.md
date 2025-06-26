@@ -1,4 +1,8 @@
-# EOX v3.5 (The final release)
+# EOX v3.6 (The final release)
+
+- Fixed the issue that doesn't let user edit collection
+
+# EOX v3.5 (used to be the final release)
 
 - Changed non-bold labels' fonts
 - Changes on code

@@ -138,7 +138,6 @@ class edit_collection_gui():
             return
 
         self.edit_window = tk.Toplevel()
-        self.edit_window.bind('<FocusOut>', lambda x: self.edit_window.destroy())
         self.edit_window.resizable(False, False)
         self.edit_window.focus()
         try:
@@ -153,7 +152,7 @@ class edit_collection_gui():
             ttk.Button(self.edit_window,
                        text = f'{collection}',
                        bootstyle = 'secondary-outline',
-                       command = lambda collection = collection: self.edit_collection(f'{collection}')).pack(pady = 4)
+                       command = lambda collection = collection: [self.edit_collection(f'{collection}'), self.edit_window.destroy()]).pack(pady = 4)
 
 
     def edit_collection(self, collection_name_to_edit):
